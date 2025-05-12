@@ -1,75 +1,72 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React from 'react';
+import { Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+export default function App() {
+  const viberPhone = '09751229930';
+  const telegramURL = 'http://t.me/vipclub388mm';
 
-export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <Text style={styles.header}>M9 Slot (မူရင်း)</Text>
+
+      <Image
+        source={require('../../assets/images/banner.jpg')}
+        style={styles.image}
+        resizeMode="contain"
+      />
+
+      <TouchableOpacity style={styles.button} onPress={() => Linking.openURL(`tel:${viberPhone}`)}>
+        <Text style={styles.buttonText}>အချစ်ကစားလိုက်ပါ</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => Linking.openURL(`viber://contact?number=+959751229930`)}>
+        <Text style={styles.buttonText}>VIBER မှ ဆက်သွယ်ရန်</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => Linking.openURL(telegramURL)}>
+        <Text style={styles.buttonText}>TELEGRAM မှ ဆက်သွယ်ရန်</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.phone}>📞 Viber: {viberPhone}</Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
+    padding: 20,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  header: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#6200ee',
+    marginBottom: 20,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  image: {
+    width: 250,
+    height: 250,
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: '#6200ee',
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    marginVertical: 6,
+    width: '100%',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  phone: {
+    marginTop: 20,
+    fontSize: 16,
+    color: '#333',
   },
 });
